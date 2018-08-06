@@ -7,13 +7,19 @@ sbt "run src/main/resources/sample-updates.txt 2 10.0"
 ## Run the compiled app
 
 ```bash
+java -jar pre-assembled-prog.jar src/main/resources/sample-updates.txt 2 10.0
+```
+
+## Compile the app and run it
+
+```bash
 sbt assembly
 java -jar target/scala-2.12/prog.jar src/main/resources/sample-updates.txt 2 10.0
 ```
 
 ## Architecture Decision Record
 ### Assumptions
-- Although this is specified in the spec for Update events, Delete instructions will also not be given for a price level index which hasn't already been provided using a New instruction.
+- Although this is specified in the spec for Update events, Delete event will also not be given for a price level index which hasn't already been provided using a New event.
 - Missing price level indexes, if they exist, will still be outputted as 0 bids, 0 asks.
 - Delete instructions still contain ticks and quantity. And they are formatted the same way `U` and `N` instructions are. (eg `D A 1 0 0`)
 
